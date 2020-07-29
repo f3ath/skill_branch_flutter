@@ -1,6 +1,6 @@
 # skill_branch_flutter
 
-A new Flutter application.
+A new Flutter project.
 
 ## Getting Started
 
