@@ -1,4 +1,4 @@
-import 'package:gallery_app/string_utils.dart';
+import 'package:gallery_app/string_util.dart';
 
 enum LoginType { email, phone }
 
