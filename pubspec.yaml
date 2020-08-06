@@ -1,6 +1,5 @@
-name: FlutterGalleryApp
-description: Amazing Flutter Project
-author: f3ath
+name: gallery_app
+description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
