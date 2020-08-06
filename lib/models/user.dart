@@ -3,23 +3,6 @@ import '../string_util.dart';
 enum LoginType { email, phone }
 
 class User with UserUtils {
-  String email;
-  String phone;
-
-  String _lastName;
-  String _firstName;
-  LoginType _type;
-
-  final friends = <User>[];
-
-  User._({String firstName, String lastName, String phone, String email})
-      : _firstName = firstName,
-        _lastName = lastName,
-        this.email = email,
-        this.phone = phone {
-    print('User created');
-    _type = email != null ? LoginType.email : LoginType.phone;
-  }
 
   factory User({String name, String phone, String email}) {
     if (name?.isEmpty == true) throw Exception('User name is empty');
@@ -27,26 +10,27 @@ class User with UserUtils {
       throw Exception('Phone or email is empty');
     }
     return User._(
-        firstName: _getFirstName(name),
-        lastName: _getLastName(name),
+        firstName: name.split(' ').first,
+        lastName: name.split(' ').last,
         phone: phone != null ? checkPhone(phone) : '',
         email: email != null ? checkEmail(email) : '');
   }
 
-  static String _getLastName(String userName) => userName.split(' ').last;
-
-  static String _getFirstName(String userName) => userName.split(' ').first;
+  User._({String firstName, String lastName, String phone, String email})
+      : _firstName = firstName,
+        _lastName = lastName,
+        this.email = email,
+        this.phone = phone,
+        _type = email != null ? LoginType.email : LoginType.phone {
+    print('User created');
+  }
 
   static String checkPhone(String phone) {
-    final pattern = r'^(?:[+0])?\d{11}';
-    phone = (phone ?? '').replaceAll(RegExp(r'[^+\d]'), '');
-    if (phone == null || phone.isEmpty) {
-      throw Exception('Empty phone number');
-    }
-    if (!RegExp(pattern).hasMatch(phone)) {
+    final plusAndDigits = phone.replaceAll(RegExp(r'[^+\d]'), '');
+    if (!RegExp(r'^(?:[+0])?\d{11}').hasMatch(plusAndDigits)) {
       throw Exception('Invalid phone number');
     }
-    return phone;
+    return plusAndDigits;
   }
 
   static String checkEmail(String email) =>
@@ -55,9 +39,18 @@ class User with UserUtils {
           ? email
           : throw Exception('Invalid email');
 
+  final String email;
+  final String phone;
+  final friends = <User>[];
+
+  final String _lastName;
+  final String _firstName;
+  final LoginType _type;
+
   String get login => _type == LoginType.phone ? phone : email;
 
-  String get name => [_firstName, _lastName.capitalized].join(' ');
+  String get name =>
+      [_firstName, _lastName].map((_) => _.capitalized).join(' ');
 
   @override
   bool operator ==(Object other) {
@@ -72,14 +65,6 @@ class User with UserUtils {
   void addFriend(Iterable<User> people) => friends.addAll(people);
 
   void removeFriend(Iterable<User> people) => friends.remove(people);
-
-  String get userInfo => '''
-  name: $name
-  email: $email
-  firstName: $_firstName
-  lastName: $_lastName
-  friends: ${friends.toList()}
- ''';
 
   String toString() => '''
   name: $name
