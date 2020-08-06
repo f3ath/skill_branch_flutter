@@ -1,4 +1,4 @@
-import 'package:gallery_app/string_util.dart';
+import '../string_util.dart';
 
 enum LoginType { email, phone }
 
@@ -87,7 +87,6 @@ class User with UserUtils {
   friends: ${friends.toList()}
  ''';
 }
-
 
 mixin UserUtils {
   String capitalize(String s) => s.capitalized;

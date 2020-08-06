@@ -1,4 +1,5 @@
-import 'package:gallery_app/models/user.dart';
+
+import 'models/user.dart';
 
 class UserHolder {
   Map<String, User> users = {};
