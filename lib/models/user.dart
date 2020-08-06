@@ -2,7 +2,7 @@ import 'package:gallery_app/string_util.dart';
 
 enum LoginType { email, phone }
 
-class User {
+class User with UserUtils {
   String email;
   String phone;
 
@@ -86,4 +86,9 @@ class User {
   email: $email
   friends: ${friends.toList()}
  ''';
+}
+
+
+mixin UserUtils {
+  String capitalize(String s) => s.capitalized;
 }
