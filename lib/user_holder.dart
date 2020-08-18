@@ -1,4 +1,3 @@
-
 import 'models/user.dart';
 
 class UserHolder {
@@ -6,23 +5,19 @@ class UserHolder {
 
   void registerUser(String name, String phone, String email) {
     final user = User(name: name, phone: phone, email: email);
-
-    if (!users.containsKey(user.login)) {
-      users[user.login] = user;
-    } else {
+    if (users.containsKey(user.login)) {
       throw Exception('A user with this email already exists');
     }
+    users[user.login] = user;
   }
 
   User registerUserByEmail(String name, String email) {
     final user = User(name: name, email: email);
-
-    if (!users.containsKey(user.login)) {
-      users[user.login] = user;
-      return user;
-    } else {
+    if (users.containsKey(user.login)) {
       throw Exception('A user with this email already exists');
     }
+    users[user.login] = user;
+    return user;
   }
 
   getUserByLogin(String login) => users[login];
