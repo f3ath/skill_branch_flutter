@@ -3,19 +3,19 @@ import 'package:FlutterGalleryApp/widgets/widgets.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-class Feed extends StatefulWidget {
-  Feed({Key key}) : super(key: key);
+class FeedScreen extends StatefulWidget {
+  FeedScreen({Key key}) : super(key: key);
 
   static const flutterDash =
       'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
 
   @override
   State<StatefulWidget> createState() {
-    return _FeedState();
+    return _FeedScreenState();
   }
 }
 
-class _FeedState extends State<Feed> {
+class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +24,8 @@ class _FeedState extends State<Feed> {
           itemBuilder: (BuildContext context, int index) {
             print(index);
             return Column(children: [
+              AppBar(title: Text('Photo')),
               _buildItem(),
-              Text('#$index'),
               Divider(
                 thickness: 2,
                 color: AppColors.mercury,
@@ -40,7 +40,7 @@ class _FeedState extends State<Feed> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Photo(
-          photoLink: Feed.flutterDash,
+          photoLink: FeedScreen.flutterDash,
         ),
         _buildPhotoMeta(),
         Padding(
