@@ -1,12 +1,17 @@
 import 'package:FlutterGalleryApp/res/colors.dart';
 import 'package:FlutterGalleryApp/res/res.dart';
 import 'package:FlutterGalleryApp/widgets/photo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class PhotoScreen extends StatefulWidget {
-  PhotoScreen(
-      {this.photo, this.name, this.userName, this.altDescription, Key key})
+class FullScreenImage extends StatelessWidget {
+  FullScreenImage(
+      {this.photo = '',
+      this.name = '',
+      this.userName = '',
+      this.altDescription = '',
+      Key key})
       : super(key: key);
 
   final String photo;
@@ -15,13 +20,6 @@ class PhotoScreen extends StatefulWidget {
   final String altDescription;
 
   @override
-  State<StatefulWidget> createState() {
-    return _PhotoScreenState();
-  }
-}
-
-class _PhotoScreenState extends State<PhotoScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -29,25 +27,25 @@ class _PhotoScreenState extends State<PhotoScreen> {
           AppBar(
             title: Text('Photo'),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(CupertinoIcons.back),
               onPressed: () {},
             ),
           ),
           Photo(
-            photoLink: widget.photo,
+            photoLink: photo,
           ),
           Text(
-            widget.altDescription,
+            altDescription,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: AppStyles.h3,
           ),
           Text(
-            widget.name,
+            name,
             style: AppStyles.h1Black,
           ),
           Text(
-            widget.userName,
+            '@$userName',
             style: AppStyles.h5Black.copyWith(color: AppColors.manatee),
           ),
           Row(

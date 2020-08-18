@@ -3,11 +3,11 @@ import 'package:FlutterGalleryApp/widgets/widgets.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
+const kFlutterDash =
+    'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
+
 class FeedScreen extends StatefulWidget {
   FeedScreen({Key key}) : super(key: key);
-
-  static const flutterDash =
-      'https://flutter.dev/assets/404/dash_nest-c64796b59b65042a2b40fae5764c13b7477a592db79eaf04c86298dcb75b78ea.png';
 
   @override
   State<StatefulWidget> createState() {
@@ -40,7 +40,7 @@ class _FeedScreenState extends State<FeedScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Photo(
-          photoLink: FeedScreen.flutterDash,
+          photoLink: kFlutterDash,
         ),
         _buildPhotoMeta(),
         Padding(
